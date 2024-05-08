@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,14 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+	  <!--=====套件使用的====-->
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	  <!--=====自訂的的====--><!--
+	  <Using Include="MyLib.Extensions" />
+	  <Using Remove="System.Net.Http" />-->
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Domain\Entity\" />
     <Folder Include="Domain\Request\Delete\" />
-    <Folder Include="Domain\Request\Put\" />
+    <Folder Include="Common\" />
+    <Folder Include="Infrastructures\Database\" />
+    <Folder Include="Repositories\Implements\" />
   </ItemGroup>
 
 </Project>

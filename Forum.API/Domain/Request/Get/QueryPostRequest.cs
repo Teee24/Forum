@@ -1,6 +1,6 @@
 ﻿namespace Forum.API.Domain.Request.Get
 {
-    public class QueryForumRequest
+    public class QueryPostRequest
     {
         ///<summary>
         ///標題

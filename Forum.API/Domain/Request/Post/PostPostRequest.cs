@@ -1,6 +1,6 @@
 ﻿namespace Forum.API.Domain.Request.Post
 {
-    public class PostForumRequest
+    public class PostPostRequest
     {
         ///<summary>
         ///標題

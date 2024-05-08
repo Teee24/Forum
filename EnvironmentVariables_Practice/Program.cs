@@ -1,32 +1,24 @@
-using Forum.API.Infrastructures.DependencyInjection;
-
 var builder = WebApplication.CreateBuilder(args);
-var config = builder.Configuration;
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-
-
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// DI
-builder.Services.DIConfigurator();
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() )
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+else if (app.Environment.IsEnvironment("Testing")){
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 
 app.UseHttpsRedirection();
