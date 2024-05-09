@@ -12,6 +12,5 @@ namespace Forum.API.Services.Interfaces
         public Task<ResultResponse> UpdatePost(PutPostRequest request);
         public Task<ResultResponse> DeletePost(Guid postid);
 
-        public Task<IActionResult> GetPost(Guid postid);
     }
 }

@@ -2,6 +2,7 @@
 using Forum.API.Domain.Entity;
 using Forum.API.Infrastructures.Database;
 using Forum.API.Repositories.Interfaces;
+using static Dapper.SqlMapper;
 
 namespace Forum.API.Repositories.Implements;
 
@@ -44,9 +45,15 @@ public class ForumRepository : IForumRepository
 
 
 
-    public Task<PostEntity?> GetByPostIdAsync(Guid PostId)
+    public async Task<PostEntity?> GetByPostIdAsync(Guid PostId)
     {
-        throw new NotImplementedException();
+        string sql = @"SELECT * FROM [dbo].[Posts]
+                        WHERE PostId = @PostId";
+
+       
+        using var conn = _databaseConnHelper.ForumConnection();
+        var posts = await conn.QuerySingleOrDefaultAsync<PostEntity>(sql, new { PostId = PostId });
+        return posts;
     }
 
     public async Task<bool> InsertAsync(PostEntity entity)

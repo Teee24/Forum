@@ -22,6 +22,8 @@ namespace Forum.API.Services.Implements
 
         public async Task<ResultResponse> DeletePost(Guid postid)
         {
+            var post = await this._forumRepository.GetByPostIdAsync(postid);
+            if (post is null) { return new ResultResponse() { ReturnMessage = "查無該筆資料", ReturnData = "" }; }
             var result = await this._forumRepository.DeleteByPostIdAsync(postid);
 
             ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "刪除成功", ReturnData = result };
@@ -66,6 +68,9 @@ namespace Forum.API.Services.Implements
 
         public async Task<ResultResponse> UpdatePost(PutPostRequest request)
         {
+            var post = await this._forumRepository.GetByPostIdAsync(request.PostId);
+            if (post is null) { return new ResultResponse() { ReturnMessage = "查無該筆資料", ReturnData = "" }; }
+
             PostEntity entity = new()
             {              
                 PostId= request.PostId,
