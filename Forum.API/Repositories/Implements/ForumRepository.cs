@@ -49,9 +49,29 @@ public class ForumRepository : IForumRepository
         throw new NotImplementedException();
     }
 
-    public Task<bool> InsertAsync(PostEntity entity)
+    public async Task<bool> InsertAsync(PostEntity entity)
     {
-        throw new NotImplementedException();
+        string sql = @"INSERT INTO [dbo].[Posts]
+           ([PostId]
+           ,[Category]
+           ,[Title]
+           ,[Detail]
+           ,[PostDate]
+           ,[Publisher])
+     VALUES
+           (@PostId
+           ,@Category
+           ,@Title
+           ,@Detail
+           ,@PostDate
+           ,@Publisher)";
+
+        using var conn = _databaseConnHelper.ForumConnection();
+        var count = await conn.ExecuteAsync(sql, entity);
+        if (count != 1) return false;
+        return true;
+
+
     }
 
     public Task<bool> UpdatePostAsync(PostEntity entity)

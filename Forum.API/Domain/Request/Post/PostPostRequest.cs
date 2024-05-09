@@ -21,16 +21,16 @@ namespace Forum.API.Domain.Request.Post
         ///<summary>
         ///內容
         /// </summary>
-        [Display(Name = "標題")]
-        [Required(ErrorMessage = "標題為必填欄位")]
+        [Display(Name = "內容")]
+        [Required(ErrorMessage = "內容為必填欄位")]
         public string Detail { get; set; }
 
-        ///<summary>
-        ///發佈時間
-        /// </summary>
-        /// 
-        [Display(Name = "發佈時間")]
-        public DateTime PostDate { get; set; }
+        /////<summary>
+        /////發佈時間
+        ///// </summary>
+        ///// 
+        //[Display(Name = "發佈時間")]
+        //public DateTime PostDate { get; set; } 
 
         ///<summary>
         ///發佈者

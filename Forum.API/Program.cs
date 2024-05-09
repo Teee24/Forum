@@ -16,6 +16,8 @@ builder.Services.AddSwaggerGen();
 // DI
 builder.Services.DIConfigurator();
 
+//AutoMapper
+
 
 
 var app = builder.Build();

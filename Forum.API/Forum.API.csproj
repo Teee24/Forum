@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Domain\AutoMapperProfile\" />
     <Folder Include="Domain\Request\Delete\" />
     <Folder Include="Common\" />
   </ItemGroup>
