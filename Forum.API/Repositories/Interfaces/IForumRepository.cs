@@ -5,7 +5,7 @@ namespace Forum.API.Repositories.Interfaces
 public interface IForumRepository
 {
         /// <summary>
-        /// 多筆取得Post，可依照分類搜尋
+        /// 多筆取得Post
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -38,5 +38,6 @@ public interface IForumRepository
         /// <param name="PostId">PK</param>
         /// <returns></returns>
         public Task<bool> DeleteByPostIdAsync(Guid PostId);
+        
     }
 }

@@ -25,12 +25,12 @@ namespace Forum.API.Services.Implements
             throw new NotImplementedException();
         }
 
-        public async Task<IActionResult> GetAllPost(QueryPostRequest request)
+        public async Task<ResultResponse> GetAllPost(QueryPostRequest request)
         {
-
             //var entity = this._mapper.Map<TodoEntity>(request);
-            //  var result = await this.forumRepository.GetAsync(this.PostEntity);
-            throw new NotImplementedException();
+            var result = await this._forumRepository.GetAsync();
+            ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "", ReturnData = result };
+            return resultResponse;
 
 
         }

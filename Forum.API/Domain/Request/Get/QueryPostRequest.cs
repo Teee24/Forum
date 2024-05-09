@@ -3,9 +3,9 @@
     public class QueryPostRequest
     {
         ///<summary>
-        ///標題
+        ///分類
         /// </summary>
-        public string Title { get; set; }
+        public string? Category { get; set; }
 
 
     }

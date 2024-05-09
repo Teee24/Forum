@@ -1,4 +1,5 @@
 ﻿using Forum.API.Domain.Request.Get;
+using Forum.API.Domain.Response;
 using Forum.API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +18,16 @@ namespace Forum.API.Controllers
         }
 
         /// <summary>
-        /// 
+        /// 多筆查詢Posts
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [HttpGet]
         public async Task<IResult> Get([FromQuery] QueryPostRequest request)
         {
             var result = await this._forumService.GetAllPost(request);
-            return Results.Ok();
+           // ResultResponse resultResponse = new ResultResponse() { ReturnData = '"' };
+            return Results.Ok(result);
         }
     }
 }

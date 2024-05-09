@@ -25,9 +25,9 @@ public class ForumRepository : IForumRepository
         return true;
     }
 
-    public  async Task<IEnumerable<PostEntity>> GetAsync(PostEntity? entity = null)
+    public async Task<IEnumerable<PostEntity>> GetAsync(PostEntity? entity = null)
     {
-        string sql = @"SELECT FROM [dbo].[Posts]
+        string sql = @"SELECT * FROM [dbo].[Posts]
                         WHERE 1=1";
 
         if (entity is not null)
