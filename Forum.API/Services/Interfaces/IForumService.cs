@@ -10,7 +10,6 @@ namespace Forum.API.Services.Interfaces
         public Task<IActionResult> InsertPost(PostPostRequest request);
         public Task<IActionResult> UpdatePost(PutPostRequest request);
         public Task<IActionResult> DeletePost(Guid postid);
-        //依照分類搜尋貼文
-        public Task<IActionResult> GetPost(string category);
+        public Task<IActionResult> GetPost(Guid postid);
     }
 }

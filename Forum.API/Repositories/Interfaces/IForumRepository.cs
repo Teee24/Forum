@@ -11,8 +11,6 @@ public interface IForumRepository
         /// <returns></returns>
         public Task<IEnumerable<PostEntity>> GetAsync(PostEntity? entity = null);
 
-
-
         /// <summary>
         /// 單筆新增 Post
         /// </summary>

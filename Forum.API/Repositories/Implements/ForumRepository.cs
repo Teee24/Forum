@@ -25,7 +25,7 @@ public class ForumRepository : IForumRepository
         return true;
     }
 
-    public Task<IEnumerable<PostEntity>> GetAsync(PostEntity? entity = null)
+    public  async Task<IEnumerable<PostEntity>> GetAsync(PostEntity? entity = null)
     {
         string sql = @"SELECT FROM [dbo].[Posts]
                         WHERE 1=1";
@@ -34,11 +34,12 @@ public class ForumRepository : IForumRepository
         {
             if (!String.IsNullOrEmpty(entity.Category))
             {
-                sql += " And Category = @Category ";
+                sql += " AND Category = @Category ";
             }
         }
-
-        throw new NotImplementedException();
+        using var conn = _databaseConnHelper.ForumConnection();
+        var posts = await conn.QueryAsync<PostEntity>(sql, entity);
+        return posts;
     }
 
 

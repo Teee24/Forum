@@ -1,24 +1,41 @@
-﻿using Forum.API.Domain.Request.Get;
+﻿using Azure;
+using Forum.API.Domain.Entity;
+using Forum.API.Domain.Request.Get;
 using Forum.API.Domain.Request.Post;
 using Forum.API.Domain.Request.Put;
+using Forum.API.Domain.Response;
+using Forum.API.Repositories.Interfaces;
 using Forum.API.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace Forum.API.Services.Implements
 {
 
     public class ForumService : IForumService
     {
+
+        private readonly IForumRepository _forumRepository;
+        public  ForumService(IForumRepository forumRepository)
+        {
+           this. _forumRepository = forumRepository;
+        }
+
         public Task<IActionResult> DeletePost(Guid postid)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IActionResult> GetAllPost(QueryPostRequest request)
+        public async Task<IActionResult> GetAllPost(QueryPostRequest request)
         {
+
+            //var entity = this._mapper.Map<TodoEntity>(request);
+            //  var result = await this.forumRepository.GetAsync(this.PostEntity);
             throw new NotImplementedException();
+
+
         }
 
-        public Task<IActionResult> GetPost(string category)
+        public Task<IActionResult> GetPost(Guid postid)
         {
             throw new NotImplementedException();
         }
