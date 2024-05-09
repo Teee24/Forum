@@ -3,7 +3,7 @@
 public class PutPostRequest
 {
     ///<summary
-    ///流水號
+    /// 流水號
     ///</summary>
     public Guid PostId { get; set; }
 

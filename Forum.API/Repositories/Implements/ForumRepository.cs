@@ -52,15 +52,13 @@ public class ForumRepository : IForumRepository
     public async Task<bool> InsertAsync(PostEntity entity)
     {
         string sql = @"INSERT INTO [dbo].[Posts]
-           ([PostId]
-           ,[Category]
+           ([Category]
            ,[Title]
            ,[Detail]
            ,[PostDate]
            ,[Publisher])
      VALUES
-           (@PostId
-           ,@Category
+           (@Category
            ,@Title
            ,@Detail
            ,@PostDate
@@ -74,8 +72,17 @@ public class ForumRepository : IForumRepository
 
     }
 
-    public Task<bool> UpdatePostAsync(PostEntity entity)
+    public async Task<bool> UpdatePostAsync(PostEntity entity)
     {
-        throw new NotImplementedException();
+        string sql = @"UPDATE [dbo].[Posts]
+               SET
+                  [Title] = @Title,
+                  [Detail] = @Detail,
+                  [PostDate] = @PostDate     
+               WHERE PostId = @PostId";
+        using var conn = _databaseConnHelper.ForumConnection();
+        var count = await conn.ExecuteAsync(sql, entity);
+        if (count != 1) return false;
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Forum.API.Domain.Request.Get;
 using Forum.API.Domain.Request.Post;
+using Forum.API.Domain.Request.Put;
 using Forum.API.Domain.Response;
 using Forum.API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -38,9 +39,31 @@ namespace Forum.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IResult> Insert([FromQuery] PostPostRequest request)
+        public async Task<IResult> Insert([FromBody] PostPostRequest request)
         {
           var result = await _forumService.InsertPost(request);
+
+            return Results.Ok(result);
+        }
+
+
+        /// <summary>
+        /// 刪除Post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        [HttpDelete("{postId}")]
+        public async Task<IResult> Delete([FromRoute] Guid postId)
+        {
+            var result = await _forumService.DeletePost(postId);
+
+            return Results.Ok(result);
+        }
+
+        [HttpPatch]
+        public async Task<IResult> Update([FromBody] PutPostRequest request,[FromRoute] Guid postId)
+        {
+            var result = await _forumService.UpdatePost(request);
 
             return Results.Ok(result);
         }

@@ -20,9 +20,14 @@ namespace Forum.API.Services.Implements
            this. _forumRepository = forumRepository;
         }
 
-        public Task<IActionResult> DeletePost(Guid postid)
+        public async Task<ResultResponse> DeletePost(Guid postid)
         {
-            throw new NotImplementedException();
+            var result = await this._forumRepository.DeleteByPostIdAsync(postid);
+
+            ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "刪除成功", ReturnData = result };
+
+
+            return resultResponse;
         }
 
         public async Task<ResultResponse> GetAllPost(QueryPostRequest request)
@@ -55,13 +60,24 @@ namespace Forum.API.Services.Implements
             };
             var result =  await this._forumRepository.InsertAsync(entity);
             
-            ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "新增成功", ReturnData = "" };
+            ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "新增成功", ReturnData = result };
             return resultResponse;
         }
 
-        public Task<IActionResult> UpdatePost(PutPostRequest request)
+        public async Task<ResultResponse> UpdatePost(PutPostRequest request)
         {
-            throw new NotImplementedException();
+            PostEntity entity = new()
+            {              
+                PostId= request.PostId,
+                Title = request.Title,
+                Detail = request.Detail,              
+                PostDate = DateTime.Now
+            };
+
+            var result = await this._forumRepository.UpdatePostAsync(entity);
+
+            ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "更新成功", ReturnData = result };
+            return resultResponse;
         }
     }
 }
