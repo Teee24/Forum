@@ -45,5 +45,12 @@ namespace Forum.API.Repositories.Interfaces
         /// <param name="entity"></param>
         /// <returns></returns>
         public Task<IEnumerable<CommentEntity>> GetCommentByPostIdAsync(CommentEntity? entity = null);
+
+        /// <summary>
+        /// 新增Post下面的Comment
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Task<bool> PostCommentAsync(CommentEntity entity);
     }
 }

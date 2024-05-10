@@ -82,5 +82,18 @@ namespace Forum.API.Controllers
             var result = await _forumService.GetComment(request);
             return Results.Ok(result);
         }
+
+        ///<summary>
+        ///新增留言
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
+        [HttpPost]
+        public async Task<IResult> PostComment([FromBody] PostCommentRequest request)
+        {
+            var result = await _forumService.PostComment(request);
+            return Results.Ok(result);
+        }
     }
 }

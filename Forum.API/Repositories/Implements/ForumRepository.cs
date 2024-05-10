@@ -90,8 +90,26 @@ public class ForumRepository : IForumRepository
     {
         string sql = @"SELECT *  FROM [dbo].[Comments]
                          WHERE  1=1 AND FromId = @FromId";
-        using var conn= _databaseConnHelper.ForumConnection();
+        using var conn = _databaseConnHelper.ForumConnection();
         var comments = await conn.QueryAsync<CommentEntity>(sql, entity);
         return comments;
+    }
+
+    public async Task<bool> PostCommentAsync(CommentEntity entity)
+    {
+        string sql = @"INSERT INTO [dbo].[Comments]
+                       ([Comment]
+                       ,[PostDate]
+                       ,[Publisher]
+                       ,[FromId])
+                 VALUES
+                       (@Comment
+                       ,@PostDate
+                       ,@Publisher
+                       ,@FromId)";
+        var conn = _databaseConnHelper.ForumConnection();
+        var count = await conn.ExecuteAsync(sql, entity);
+        if (count != 1) return false;
+        return true;
     }
 }

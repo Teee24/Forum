@@ -19,14 +19,6 @@
         /// </summary>
         public string Publisher { get; set; }
         ///<summary>
-        ///第幾層 (true-留言;false-回復)
-        /// </summary>
-        public bool Layer { get; set; }
-        ///<summary>
-        ///回復哪則留言的Id
-        /// </summary>
-        public Guid? ToId { get; set; }
-        ///<summary>
         ///針對哪篇貼文的留言
         /// </summary>
         public Guid FromId { get; set; }

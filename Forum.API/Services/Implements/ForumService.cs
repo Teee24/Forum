@@ -79,8 +79,17 @@ public class ForumService : IForumService
         if (post is null) { return new ResultResponse() { ReturnMessage = "該筆貼文不存在", ReturnData = null }; }
         var entity = this._mapper.Map<CommentEntity>(request);
         var result = await this._forumRepository.GetCommentByPostIdAsync(entity);
-        if (result is null) { return new ResultResponse() { ReturnMessage = "該筆貼文尚未有人留言", ReturnData = null }; }
-        ResultResponse resultResponse =new ResultResponse() { ReturnMessage = "查詢成功", ReturnData = result };
+        if (result.Count() == 0) { return new ResultResponse() { ReturnMessage = "該筆貼文尚未有人留言", ReturnData = null }; }
+        ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "查詢成功", ReturnData = result };
+        return resultResponse;
+    }
+
+    public async Task<ResultResponse> PostComment(PostCommentRequest request)
+    {
+        var entity = this._mapper.Map<CommentEntity>(request);
+        entity.PostDate = DateTime.Now;
+        var result = await this._forumRepository.PostCommentAsync(entity);
+        ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "新增成功", ReturnData = result };
         return resultResponse;
     }
 }
