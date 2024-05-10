@@ -25,8 +25,8 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.DIConfigurator();
 
 //AutoMapper
-
-
+//§ä¨ì¥þ³¡Profile
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

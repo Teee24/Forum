@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\AutoMapperProfile\" />
     <Folder Include="Common\" />
   </ItemGroup>
 

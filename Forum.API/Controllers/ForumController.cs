@@ -24,6 +24,7 @@ namespace Forum.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
         [HttpGet]
         public async Task<IResult> Get([FromQuery] QueryPostRequest request)
         {
@@ -31,12 +32,12 @@ namespace Forum.API.Controllers
             return Results.Ok(result);
         }
 
-
         /// <summary>
         /// 新增單筆Posts
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
         [HttpPost]
         public async Task<IResult> Insert([FromBody] PostPostRequest request)
         {
@@ -44,19 +45,24 @@ namespace Forum.API.Controllers
             return Results.Ok(result);
         }
 
-
         /// <summary>
         /// 刪除Post
         /// </summary>
-        /// <param name="postId"></param>
+        /// <param name="postId">PK</param>
         /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
         [HttpDelete("{postId}")]
         public async Task<IResult> Delete([FromRoute] Guid postId)
         {
             var result = await _forumService.DeletePost(postId);
             return Results.Ok(result);
         }
-
+        /// <summary>
+        /// 修改單筆Post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
         [HttpPatch]
         public async Task<IResult> Update([FromBody] PutPostRequest request, [FromRoute] Guid postId)
         {
