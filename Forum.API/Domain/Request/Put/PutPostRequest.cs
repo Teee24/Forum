@@ -17,9 +17,4 @@ public class PutPostRequest
     /// </summary>
     public string Detail { get; set; }
 
-    ///<summary>
-    ///發佈時間
-    /// </summary>
-    public DateTime PostDate { get; set; }
-
 }
