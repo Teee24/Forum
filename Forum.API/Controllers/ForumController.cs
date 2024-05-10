@@ -108,5 +108,18 @@ namespace Forum.API.Controllers
             var result = await _forumService.UpdateComment(request);
             return Results.Ok(result);
         }
+
+        ///<summary>
+        ///刪除單筆Comment
+        /// </summary>
+        /// <param name="commentId"></param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
+        [HttpDelete("{commentId}")]
+        public async Task<IResult> DeleteComment([FromRoute] Guid commentId)
+        {
+            var result = await _forumService.DeleteComment(commentId);
+            return Results.Ok(result);
+        }
     }
 }

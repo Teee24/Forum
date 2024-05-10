@@ -14,5 +14,6 @@ namespace Forum.API.Services.Interfaces
         public Task<ResultResponse> GetComment(QueryCommentRequest request);
         public Task<ResultResponse> PostComment(PostCommentRequest request);
         public Task<ResultResponse> UpdateComment(PutCommentRequest request);
+        public Task<ResultResponse> DeleteComment(Guid commentid);
     }
 }

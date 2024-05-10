@@ -133,4 +133,14 @@ public class ForumRepository : IForumRepository
         if (count != 1) return false;
         return true;
     }
+
+    public async Task<bool> DeleteByCommentIdAsync(Guid commentId)
+    {
+        string sql = @" DELETE FROM [dbo].[Comments]
+                        WHERE CommentId = @CommentId";
+        using var conn = _databaseConnHelper.ForumConnection();
+        var count = await conn.ExecuteAsync(sql, new { CommentId = commentId });
+        if (count != 1) return false;
+        return true;
+    }
 }

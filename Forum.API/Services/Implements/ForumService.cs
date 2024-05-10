@@ -33,7 +33,6 @@ public class ForumService : IForumService
 
     public async Task<ResultResponse> GetAllPost(QueryPostRequest request)
     {
-        //PostEntity entity = new() { Category = request.Category };'
         var entity = this._mapper.Map<PostEntity>(request);
         var result = await this._forumRepository.GetAsync(entity);
         ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "查詢成功", ReturnData = result };
@@ -42,15 +41,6 @@ public class ForumService : IForumService
 
     public async Task<ResultResponse> InsertPost(PostPostRequest request)
     {
-        //PostEntity entity = new()
-        //{
-        //    Category = request.Category,
-        //    Title = request.Title,
-        //    Detail = request.Detail,
-        //    Publisher = request.Publisher,
-        //    //發佈時間為現在
-        //    PostDate = DateTime.Now
-        //};
         var entity = this._mapper.Map<PostEntity>(request);
         var result = await this._forumRepository.InsertAsync(entity);
         ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "新增成功", ReturnData = result };
@@ -61,13 +51,6 @@ public class ForumService : IForumService
     {
         var post = await this._forumRepository.GetByPostIdAsync(request.PostId);
         if (post is null) { return new ResultResponse() { ReturnMessage = "查無該筆資料", ReturnData = "" }; }
-        //PostEntity entity = new()
-        //{
-        //    PostId = request.PostId,
-        //    Title = request.Title,
-        //    Detail = request.Detail,
-        //    PostDate = DateTime.Now
-        //};
         var entity = this._mapper.Map<PostEntity>(request);
         var result = await this._forumRepository.UpdatePostAsync(entity);
         ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "更新成功", ReturnData = result };
@@ -99,6 +82,15 @@ public class ForumService : IForumService
         entity.PostDate = DateTime.Now;
         var result = await this._forumRepository.PutByCommentIdAsync(entity);
         ResultResponse resultResponse = result? new ResultResponse() { ReturnMessage = "修改成功", ReturnData = result } :new ResultResponse() { ReturnMessage = "修改失敗", ReturnData = null };
+        return resultResponse;
+    }
+
+    public async Task<ResultResponse> DeleteComment(Guid commentid)
+    {
+        var post = await this._forumRepository.GetByCommentIdAsync(commentid);
+        if (post is null) { return new ResultResponse() { ReturnMessage = "查無該筆資料", ReturnData = "" }; }
+        var result = await this._forumRepository.DeleteByCommentIdAsync(commentid);
+        ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "刪除成功", ReturnData = result };
         return resultResponse;
     }
 }

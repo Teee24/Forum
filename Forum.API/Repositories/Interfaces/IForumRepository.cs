@@ -66,5 +66,12 @@ namespace Forum.API.Repositories.Interfaces
         /// <param name="entity"></param>
         /// <returns></returns>
         public Task<bool> PutByCommentIdAsync(CommentEntity entity);
+
+        /// <summary>
+        /// 單筆刪除Comment
+        /// </summary>
+        /// <param name="commenttId">PK</param>
+        /// <returns></returns>
+        public Task<bool> DeleteByCommentIdAsync(Guid commenttId);
     }
 }
