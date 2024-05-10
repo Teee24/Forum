@@ -81,7 +81,7 @@ public class ForumService : IForumService
         var entity = this._mapper.Map<CommentEntity>(request);
         entity.PostDate = DateTime.Now;
         var result = await this._forumRepository.PutByCommentIdAsync(entity);
-        ResultResponse resultResponse = result? new ResultResponse() { ReturnMessage = "修改成功", ReturnData = result } :new ResultResponse() { ReturnMessage = "修改失敗", ReturnData = null };
+        ResultResponse resultResponse = result ? new ResultResponse() { ReturnMessage = "修改成功", ReturnData = result } : new ResultResponse() { ReturnMessage = "修改失敗", ReturnData = null };
         return resultResponse;
     }
 
