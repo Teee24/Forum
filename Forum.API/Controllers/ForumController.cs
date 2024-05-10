@@ -69,5 +69,18 @@ namespace Forum.API.Controllers
             var result = await _forumService.UpdatePost(request);
             return Results.Ok(result);
         }
+
+        ///<summary>
+        ///查詢貼文的留言
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
+        [HttpGet]
+        public async Task<IResult> GetComment([FromQuery] QueryCommentRequest request)
+        {
+            var result = await _forumService.GetComment(request);
+            return Results.Ok(result);
+        }
     }
 }

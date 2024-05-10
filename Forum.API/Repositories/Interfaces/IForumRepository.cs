@@ -39,5 +39,11 @@ namespace Forum.API.Repositories.Interfaces
         /// <returns></returns>
         public Task<bool> DeleteByPostIdAsync(Guid PostId);
 
+        /// <summary>
+        /// 取得指定Post下面的Comment
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<CommentEntity>> GetCommentByPostIdAsync(CommentEntity? entity = null);
     }
 }

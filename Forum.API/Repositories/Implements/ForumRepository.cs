@@ -2,6 +2,7 @@
 using Forum.API.Domain.Entity;
 using Forum.API.Infrastructures.Database;
 using Forum.API.Repositories.Interfaces;
+using Microsoft.Extensions.Hosting;
 using static Dapper.SqlMapper;
 
 namespace Forum.API.Repositories.Implements;
@@ -69,8 +70,6 @@ public class ForumRepository : IForumRepository
         var count = await conn.ExecuteAsync(sql, entity);
         if (count != 1) return false;
         return true;
-
-
     }
 
     public async Task<bool> UpdatePostAsync(PostEntity entity)
@@ -85,5 +84,14 @@ public class ForumRepository : IForumRepository
         var count = await conn.ExecuteAsync(sql, entity);
         if (count != 1) return false;
         return true;
+    }
+
+    public async Task<IEnumerable<CommentEntity>> GetCommentByPostIdAsync(CommentEntity? entity = null)
+    {
+        string sql = @"SELECT *  FROM [dbo].[Comments]
+                         WHERE  1=1 AND FromId = @FromId";
+        using var conn= _databaseConnHelper.ForumConnection();
+        var comments = await conn.QueryAsync<CommentEntity>(sql, entity);
+        return comments;
     }
 }
