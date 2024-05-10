@@ -3,6 +3,7 @@ using Forum.API.Domain.Entity;
 using Forum.API.Infrastructures.Database;
 using Forum.API.Repositories.Interfaces;
 using Microsoft.Extensions.Hosting;
+using System.ComponentModel.Design;
 using static Dapper.SqlMapper;
 
 namespace Forum.API.Repositories.Implements;
@@ -34,7 +35,7 @@ public class ForumRepository : IForumRepository
         {
             if (!String.IsNullOrEmpty(entity.Category))
             {
-                sql += " AND Category = @Category ";
+                sql += " AND Category LIKE '%' + @Category + '%' ";
             }
         }
         using var conn = _databaseConnHelper.ForumConnection();
@@ -42,12 +43,12 @@ public class ForumRepository : IForumRepository
         return posts;
     }
 
-    public async Task<PostEntity?> GetByPostIdAsync(Guid PostId)
+    public async Task<PostEntity?> GetByPostIdAsync(Guid postId)
     {
         string sql = @"SELECT * FROM [dbo].[Posts]
                         WHERE PostId = @PostId";
         using var conn = _databaseConnHelper.ForumConnection();
-        var posts = await conn.QuerySingleOrDefaultAsync<PostEntity>(sql, new { PostId = PostId });
+        var posts = await conn.QuerySingleOrDefaultAsync<PostEntity>(sql, new { PostId = postId });
         return posts;
     }
 
@@ -108,6 +109,26 @@ public class ForumRepository : IForumRepository
                        ,@Publisher
                        ,@FromId)";
         var conn = _databaseConnHelper.ForumConnection();
+        var count = await conn.ExecuteAsync(sql, entity);
+        if (count != 1) return false;
+        return true;
+    }
+
+    public async Task<CommentEntity?> GetByCommentIdAsync(Guid commentId)
+    {
+        string sql = @"SELECT * FROM [dbo].[Comments]
+                        WHERE CommentId = @CommentId";
+        using var conn = _databaseConnHelper.ForumConnection();
+        var comment = await conn.QuerySingleOrDefaultAsync<CommentEntity>(sql, new { CommentId = commentId });
+        return comment;
+    }
+
+    public async Task<bool> PutByCommentIdAsync(CommentEntity entity)
+    {
+        string sql = @"UPDATE [dbo].[Comments]
+                        SET [Comment] = @Comment
+                        WHERE CommentId = @CommentId";
+        using var conn = _databaseConnHelper.ForumConnection();
         var count = await conn.ExecuteAsync(sql, entity);
         if (count != 1) return false;
         return true;

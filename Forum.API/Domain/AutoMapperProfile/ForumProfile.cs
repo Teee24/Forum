@@ -16,9 +16,8 @@ namespace Forum.API.Domain.AutoMapperProfile
             CreateMap<PostPostRequest, PostEntity>()
                  .AfterMap((src, dest) => dest.PostDate = DateTime.Now);
             CreateMap<QueryCommentRequest, CommentEntity>();
-            //CreateMap<PostCommentRequest, CommentEntity>()
-            //     .AfterMap((src, dest) => dest.PostDate = DateTime.Now);
             CreateMap<PostCommentRequest, CommentEntity>();
+            CreateMap<PutCommentRequest, CommentEntity>();
         }
     }
 }

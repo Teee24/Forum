@@ -28,9 +28,9 @@ namespace Forum.API.Repositories.Interfaces
         /// <summary>
         /// 單筆取得Post
         /// </summary>
-        /// <param name="PostId">PK</param>
+        /// <param name="postId">PK</param>
         /// <returns></returns>
-        public Task<PostEntity?> GetByPostIdAsync(Guid PostId);
+        public Task<PostEntity?> GetByPostIdAsync(Guid postId);
 
         /// <summary>
         /// 單筆刪除Post
@@ -52,5 +52,19 @@ namespace Forum.API.Repositories.Interfaces
         /// <param name="entity"></param>
         /// <returns></returns>
         public Task<bool> PostCommentAsync(CommentEntity entity);
+
+        /// <summary>
+        /// 單筆取得Comment
+        /// </summary>
+        /// <param name="commentId">PK</param>
+        /// <returns></returns>
+        public Task<CommentEntity?> GetByCommentIdAsync(Guid commentId);
+
+        /// <summary>
+        /// 修改Post下面的Comment
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public Task<bool> PutByCommentIdAsync(CommentEntity entity);
     }
 }

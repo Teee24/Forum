@@ -92,4 +92,13 @@ public class ForumService : IForumService
         ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "新增成功", ReturnData = result };
         return resultResponse;
     }
+
+    public async Task<ResultResponse> UpdateComment(PutCommentRequest request)
+    {
+        var entity = this._mapper.Map<CommentEntity>(request);
+        entity.PostDate = DateTime.Now;
+        var result = await this._forumRepository.PutByCommentIdAsync(entity);
+        ResultResponse resultResponse = result? new ResultResponse() { ReturnMessage = "修改成功", ReturnData = result } :new ResultResponse() { ReturnMessage = "修改失敗", ReturnData = null };
+        return resultResponse;
+    }
 }

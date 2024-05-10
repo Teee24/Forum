@@ -95,5 +95,18 @@ namespace Forum.API.Controllers
             var result = await _forumService.PostComment(request);
             return Results.Ok(result);
         }
+
+        ///<summary>
+        ///修改單筆Comment
+        /// </summary>
+        /// <param name="commentId"></param>
+        /// <returns></returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
+        [HttpPut]
+        public async Task<IResult> PutComment([FromBody] PutCommentRequest request, [FromRoute] Guid commentId)
+        {
+            var result = await _forumService.UpdateComment(request);
+            return Results.Ok(result);
+        }
     }
 }
