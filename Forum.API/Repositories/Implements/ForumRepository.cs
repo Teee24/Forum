@@ -15,11 +15,10 @@ public class ForumRepository : IForumRepository
     {
         this._databaseConnHelper = databaseConnHelper;
     }
-    public async  Task<bool> DeleteByPostIdAsync(Guid PostId)
+    public async Task<bool> DeleteByPostIdAsync(Guid PostId)
     {
         string sql = @" DELETE FROM [dbo].[Posts]
                         WHERE  PostId = @PostId ";
-
         using var conn = _databaseConnHelper.ForumConnection();
         var count = await conn.ExecuteAsync(sql, new { PostId = PostId });
         if (count != 1) return false;
@@ -30,7 +29,6 @@ public class ForumRepository : IForumRepository
     {
         string sql = @"SELECT * FROM [dbo].[Posts]
                         WHERE 1=1";
-
         if (entity is not null)
         {
             if (!String.IsNullOrEmpty(entity.Category))
@@ -43,14 +41,10 @@ public class ForumRepository : IForumRepository
         return posts;
     }
 
-
-
     public async Task<PostEntity?> GetByPostIdAsync(Guid PostId)
     {
         string sql = @"SELECT * FROM [dbo].[Posts]
                         WHERE PostId = @PostId";
-
-       
         using var conn = _databaseConnHelper.ForumConnection();
         var posts = await conn.QuerySingleOrDefaultAsync<PostEntity>(sql, new { PostId = PostId });
         return posts;
@@ -59,17 +53,17 @@ public class ForumRepository : IForumRepository
     public async Task<bool> InsertAsync(PostEntity entity)
     {
         string sql = @"INSERT INTO [dbo].[Posts]
-           ([Category]
-           ,[Title]
-           ,[Detail]
-           ,[PostDate]
-           ,[Publisher])
-     VALUES
-           (@Category
-           ,@Title
-           ,@Detail
-           ,@PostDate
-           ,@Publisher)";
+                        ([Category]
+                        ,[Title]
+                        ,[Detail]
+                        ,[PostDate]
+                        ,[Publisher])
+                    VALUES
+                        (@Category
+                        ,@Title
+                        ,@Detail
+                        ,@PostDate
+                        ,@Publisher)";
 
         using var conn = _databaseConnHelper.ForumConnection();
         var count = await conn.ExecuteAsync(sql, entity);
@@ -82,11 +76,11 @@ public class ForumRepository : IForumRepository
     public async Task<bool> UpdatePostAsync(PostEntity entity)
     {
         string sql = @"UPDATE [dbo].[Posts]
-               SET
-                  [Title] = @Title,
-                  [Detail] = @Detail,
-                  [PostDate] = @PostDate     
-               WHERE PostId = @PostId";
+                        SET
+                            [Title] = @Title,
+                            [Detail] = @Detail,
+                            [PostDate] = @PostDate     
+                        WHERE PostId = @PostId";
         using var conn = _databaseConnHelper.ForumConnection();
         var count = await conn.ExecuteAsync(sql, entity);
         if (count != 1) return false;

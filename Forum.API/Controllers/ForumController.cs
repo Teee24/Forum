@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Forum.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ForumController : ControllerBase
     {
@@ -28,7 +28,6 @@ namespace Forum.API.Controllers
         public async Task<IResult> Get([FromQuery] QueryPostRequest request)
         {
             var result = await this._forumService.GetAllPost(request);
-           // ResultResponse resultResponse = new ResultResponse() { ReturnData = '"' };
             return Results.Ok(result);
         }
 
@@ -41,8 +40,7 @@ namespace Forum.API.Controllers
         [HttpPost]
         public async Task<IResult> Insert([FromBody] PostPostRequest request)
         {
-          var result = await _forumService.InsertPost(request);
-
+            var result = await _forumService.InsertPost(request);
             return Results.Ok(result);
         }
 
@@ -56,15 +54,13 @@ namespace Forum.API.Controllers
         public async Task<IResult> Delete([FromRoute] Guid postId)
         {
             var result = await _forumService.DeletePost(postId);
-
             return Results.Ok(result);
         }
 
         [HttpPatch]
-        public async Task<IResult> Update([FromBody] PutPostRequest request,[FromRoute] Guid postId)
+        public async Task<IResult> Update([FromBody] PutPostRequest request, [FromRoute] Guid postId)
         {
             var result = await _forumService.UpdatePost(request);
-
             return Results.Ok(result);
         }
     }

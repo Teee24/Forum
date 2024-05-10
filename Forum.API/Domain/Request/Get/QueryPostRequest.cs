@@ -7,6 +7,5 @@
         /// </summary>
         public string? Category { get; set; }
 
-
     }
 }

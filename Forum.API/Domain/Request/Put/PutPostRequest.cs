@@ -2,9 +2,9 @@
 
 public class PutPostRequest
 {
-    ///<summary
-    /// 流水號
-    ///</summary>
+    ///<summary>
+    ///流水號
+    /// </summary>
     public Guid PostId { get; set; }
 
     ///<summary>
@@ -18,7 +18,7 @@ public class PutPostRequest
     public string Detail { get; set; }
 
     ///<summary>
-    ///發布日期
+    ///發佈時間
     /// </summary>
     public DateTime PostDate { get; set; }
 

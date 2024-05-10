@@ -15,9 +15,9 @@ namespace Forum.API.Services.Implements
     {
 
         private readonly IForumRepository _forumRepository;
-        public  ForumService(IForumRepository forumRepository)
+        public ForumService(IForumRepository forumRepository)
         {
-           this. _forumRepository = forumRepository;
+            this._forumRepository = forumRepository;
         }
 
         public async Task<ResultResponse> DeletePost(Guid postid)
@@ -25,43 +25,30 @@ namespace Forum.API.Services.Implements
             var post = await this._forumRepository.GetByPostIdAsync(postid);
             if (post is null) { return new ResultResponse() { ReturnMessage = "查無該筆資料", ReturnData = "" }; }
             var result = await this._forumRepository.DeleteByPostIdAsync(postid);
-
             ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "刪除成功", ReturnData = result };
-
-
             return resultResponse;
         }
 
         public async Task<ResultResponse> GetAllPost(QueryPostRequest request)
         {
-            PostEntity entity = new() { Category = request.Category};
+            PostEntity entity = new() { Category = request.Category };
             var result = await this._forumRepository.GetAsync(entity);
-
-            ResultResponse resultResponse= new ResultResponse() { ReturnMessage = "查詢成功", ReturnData = result };
-            
-            
+            ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "查詢成功", ReturnData = result };
             return resultResponse;
-
-
-        }
-
-        public Task<IActionResult> GetPost(Guid postid)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<ResultResponse> InsertPost(PostPostRequest request)
         {
-            PostEntity entity = new() { 
-            Category= request.Category,
-            Title= request.Title,
-            Detail =request.Detail,
-            Publisher = request.Publisher,
-            //發佈時間為現在
-            PostDate = DateTime.Now
+            PostEntity entity = new()
+            {
+                Category = request.Category,
+                Title = request.Title,
+                Detail = request.Detail,
+                Publisher = request.Publisher,
+                //發佈時間為現在
+                PostDate = DateTime.Now
             };
-            var result =  await this._forumRepository.InsertAsync(entity);
-            
+            var result = await this._forumRepository.InsertAsync(entity);
             ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "新增成功", ReturnData = result };
             return resultResponse;
         }
@@ -70,17 +57,14 @@ namespace Forum.API.Services.Implements
         {
             var post = await this._forumRepository.GetByPostIdAsync(request.PostId);
             if (post is null) { return new ResultResponse() { ReturnMessage = "查無該筆資料", ReturnData = "" }; }
-
             PostEntity entity = new()
-            {              
-                PostId= request.PostId,
+            {
+                PostId = request.PostId,
                 Title = request.Title,
-                Detail = request.Detail,              
+                Detail = request.Detail,
                 PostDate = DateTime.Now
             };
-
             var result = await this._forumRepository.UpdatePostAsync(entity);
-
             ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "更新成功", ReturnData = result };
             return resultResponse;
         }
