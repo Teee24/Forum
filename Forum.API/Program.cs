@@ -25,7 +25,16 @@ builder.Services.DIConfigurator();
 //找到全部Profile
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+//啟用CORS
+builder.Services.AddCors(options=> {
+    
+    //options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+    options.AddPolicy("AllowGet", builder => builder.AllowAnyOrigin().WithMethods("Get").WithHeaders("*"));
+});
 var app = builder.Build();
+
+app.UseCors("AllowGet");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -29,6 +29,7 @@ public class ForumController : ControllerBase
     public async Task<IResult> Get([FromQuery] QueryPostRequest request)
     {
         var result = await this._forumService.GetAllPost(request);
+
         return Results.Ok(result);
     }
 
@@ -42,6 +43,7 @@ public class ForumController : ControllerBase
     public async Task<IResult> Insert([FromBody] PostPostRequest request)
     {
         var result = await _forumService.InsertPost(request);
+
         return Results.Ok(result);
     }
 
@@ -55,6 +57,7 @@ public class ForumController : ControllerBase
     public async Task<IResult> Delete([FromRoute] Guid postId)
     {
         var result = await _forumService.DeletePost(postId);
+
         return Results.Ok(result);
     }
     /// <summary>
@@ -67,6 +70,7 @@ public class ForumController : ControllerBase
     public async Task<IResult> Update([FromBody] PutPostRequest request, [FromRoute] Guid postId)
     {
         var result = await _forumService.UpdatePost(request);
+
         return Results.Ok(result);
     }
 
@@ -80,6 +84,7 @@ public class ForumController : ControllerBase
     public async Task<IResult> GetComment([FromQuery] QueryCommentRequest request)
     {
         var result = await _forumService.GetComment(request);
+
         return Results.Ok(result);
     }
 
@@ -93,6 +98,7 @@ public class ForumController : ControllerBase
     public async Task<IResult> PostComment([FromBody] PostCommentRequest request)
     {
         var result = await _forumService.PostComment(request);
+
         return Results.Ok(result);
     }
 
@@ -106,6 +112,7 @@ public class ForumController : ControllerBase
     public async Task<IResult> PutComment([FromBody] PutCommentRequest request, [FromRoute] Guid commentId)
     {
         var result = await _forumService.UpdateComment(request);
+
         return Results.Ok(result);
     }
 
@@ -119,6 +126,7 @@ public class ForumController : ControllerBase
     public async Task<IResult> DeleteComment([FromRoute] Guid commentId)
     {
         var result = await _forumService.DeleteComment(commentId);
+
         return Results.Ok(result);
     }
 }
