@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.API", "Forum.API\Foru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnvironmentVariables_Practice", "EnvironmentVariables_Practice\EnvironmentVariables_Practice.csproj", "{9939A726-0DAB-4A61-A69A-0B0D82CB8C2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog_Practice", "Serilog_Practice\Serilog_Practice.csproj", "{421F0ABB-1BFB-4CD2-A1E3-9EAE4F7225F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serilog_Practice", "Serilog_Practice\Serilog_Practice.csproj", "{421F0ABB-1BFB-4CD2-A1E3-9EAE4F7225F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareNFilter_Practice", "MiddlewareNFilter_Practice\MiddlewareNFilter_Practice.csproj", "{D4D49745-2575-4FCE-83DC-D21FE2C12262}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{421F0ABB-1BFB-4CD2-A1E3-9EAE4F7225F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{421F0ABB-1BFB-4CD2-A1E3-9EAE4F7225F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{421F0ABB-1BFB-4CD2-A1E3-9EAE4F7225F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4D49745-2575-4FCE-83DC-D21FE2C12262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D49745-2575-4FCE-83DC-D21FE2C12262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D49745-2575-4FCE-83DC-D21FE2C12262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D49745-2575-4FCE-83DC-D21FE2C12262}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
