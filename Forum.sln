@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnvironmentVariables_Practi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serilog_Practice", "Serilog_Practice\Serilog_Practice.csproj", "{421F0ABB-1BFB-4CD2-A1E3-9EAE4F7225F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareNFilter_Practice", "MiddlewareNFilter_Practice\MiddlewareNFilter_Practice.csproj", "{D4D49745-2575-4FCE-83DC-D21FE2C12262}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiddlewareNFilter_Practice", "MiddlewareNFilter_Practice\MiddlewareNFilter_Practice.csproj", "{D4D49745-2575-4FCE-83DC-D21FE2C12262}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTAuth_Practice", "JWTAuth_Practice\JWTAuth_Practice.csproj", "{B7DA9994-BFB6-470F-BBEC-5C60C8F2DF30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D4D49745-2575-4FCE-83DC-D21FE2C12262}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4D49745-2575-4FCE-83DC-D21FE2C12262}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4D49745-2575-4FCE-83DC-D21FE2C12262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7DA9994-BFB6-470F-BBEC-5C60C8F2DF30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7DA9994-BFB6-470F-BBEC-5C60C8F2DF30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7DA9994-BFB6-470F-BBEC-5C60C8F2DF30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7DA9994-BFB6-470F-BBEC-5C60C8F2DF30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
