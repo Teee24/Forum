@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiddlewareNFilter_Practice"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTAuth_Practice", "JWTAuth_Practice\JWTAuth_Practice.csproj", "{B7DA9994-BFB6-470F-BBEC-5C60C8F2DF30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClient_Practice", "HttpClient_Practice\HttpClient_Practice.csproj", "{6D2B57C3-8C4C-45CD-8F03-D935814AE25A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B7DA9994-BFB6-470F-BBEC-5C60C8F2DF30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7DA9994-BFB6-470F-BBEC-5C60C8F2DF30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7DA9994-BFB6-470F-BBEC-5C60C8F2DF30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D2B57C3-8C4C-45CD-8F03-D935814AE25A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D2B57C3-8C4C-45CD-8F03-D935814AE25A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D2B57C3-8C4C-45CD-8F03-D935814AE25A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D2B57C3-8C4C-45CD-8F03-D935814AE25A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

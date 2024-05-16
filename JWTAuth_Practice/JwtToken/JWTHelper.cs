@@ -14,7 +14,7 @@ namespace JWTAuth_Practice.JwtToken
             Configuration = configuration;
         }
 
-        public string GenerateToken(string userName, int expireSecond = 30)
+        public string GenerateToken(string userName, int expireMinutes = 30)
         {
             var issuer = Configuration.GetValue<string>("JwtSettings:Issuer");
             var signKey = Configuration.GetValue<string>("JwtSettings:SignKey");
@@ -59,7 +59,7 @@ namespace JWTAuth_Practice.JwtToken
                 //NotBefore = DateTime.Now, // Default is DateTime.Now
                 //IssuedAt = DateTime.Now, // Default is DateTime.Now
                 Subject = userClaimsIdentity,
-                Expires = DateTime.Now.AddSeconds(5),
+                Expires = DateTime.Now.AddMinutes(2),
                 SigningCredentials = signingCredentials
             };
 
