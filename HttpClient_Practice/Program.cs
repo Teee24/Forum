@@ -21,7 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 //});
 
 //具型別用戶端
-builder.Services.AddHttpClient<ProductsServer>();
+//builder.Services.AddHttpClient<ProductsServer>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

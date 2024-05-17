@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
-//using Newtonsoft.Json;  配合JsonConvert
+using Newtonsoft.Json;  //配合JsonConvert
 using System.Net.Http.Headers;
-using System.Text.Json;
+//using System.Text.Json;
 
 namespace HttpClient_Practice.Controllers
 {
@@ -27,8 +27,8 @@ namespace HttpClient_Practice.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                var resultString = await response.Content.ReadAsStreamAsync();
-                var responseString = await JsonSerializer.DeserializeAsync<Aaaa.Rootobject>(resultString);
+                var resultString = await response.Content.ReadAsStringAsync();
+                var responseString = JsonConvert.DeserializeObject<RootObject>(resultString);
 
                 return Results.Ok(responseString);
             }

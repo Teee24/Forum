@@ -1,0 +1,6 @@
+@FileProvider_Practice_HostAddress = http://localhost:5282
+
+GET {{FileProvider_Practice_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
