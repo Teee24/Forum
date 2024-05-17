@@ -16,19 +16,20 @@ namespace HttpClient_Practice.Controllers
         public ActicityController(IHttpClientFactory httpClientFactory) => _httpClientFactory = httpClientFactory;
 
         [HttpGet]
-        public async Task<IResult> GetActicity()
+        public async Task<IResult> GetActivity([FromQuery] ActivityRequest? request)
         {
-            ActicityRequest request = new ActicityRequest();
-            request.type = "user";
-            request.filter = "gose";
-            string querystring = "?type=" + request.type + "&filter=" + request.filter;
+            string querystring = "";
+            if (request != null)
+            {
+                querystring = $"?type={request.type}&filter={request.filter}";
+            }
             var httpClient = _httpClientFactory.CreateClient("Acticities");
             HttpResponseMessage response = await httpClient.GetAsync(querystring);
 
             if (response.IsSuccessStatusCode)
             {
                 var resultString = await response.Content.ReadAsStringAsync();
-                var responseString = JsonConvert.DeserializeObject<RootObject>(resultString);
+                var responseString = JsonConvert.DeserializeObject<Activities.ActivityRootobject>(resultString);
 
                 return Results.Ok(responseString);
             }

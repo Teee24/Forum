@@ -1,9 +1,9 @@
 ﻿namespace HttpClient_Practice.Request
 {
-    public class Aaaa
+    public class Activities
     {
 
-        public class Rootobject
+        public class ActivityRootobject
         {
             public int page { get; set; }
             public bool last_page { get; set; }

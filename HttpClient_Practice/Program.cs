@@ -1,3 +1,4 @@
+using HttpClient_Practice.AdapterHelper;
 using HttpClient_Practice.Request;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Net.Http.Headers;
@@ -13,15 +14,15 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddHttpClient();
 
 //具名用戶端
-//builder.Services.AddHttpClient("Acticities", httpClient =>
-//{
-//    httpClient.BaseAddress = new Uri("https://favqs.com/api/activities/");
-//    httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
-//    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "e3f21f68737d1cf1fb53f3aa38c8218d");
-//});
+builder.Services.AddHttpClient("Acticities", httpClient =>
+{
+    httpClient.BaseAddress = new Uri("https://favqs.com/api/activities/");
+    httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "e3f21f68737d1cf1fb53f3aa38c8218d");
+});
 
 //具型別用戶端
-//builder.Services.AddHttpClient<ProductsServer>();
+//builder.Services.AddHttpClient<ProductsAdapter>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
