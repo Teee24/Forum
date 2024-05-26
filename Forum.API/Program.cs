@@ -43,16 +43,16 @@ try
     builder.Services.AddCors(options =>
     {
 
-        //options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+        options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
-        options.AddPolicy("AllowGet", builder => builder.AllowAnyOrigin().WithMethods("Get").WithHeaders("*"));
+        //options.AddPolicy("AllowGet", builder => builder.AllowAnyOrigin().WithMethods("Get").WithHeaders("*"));
     });
 
     builder.Host.UseSerilog(); //³z¹L IHostBuilder ¥[¤J UseSerilog()
 
     var app = builder.Build();
 
-    app.UseCors("AllowGet");
+    app.UseCors("AllowAll");
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
