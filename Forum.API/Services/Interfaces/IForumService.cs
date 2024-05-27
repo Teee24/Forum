@@ -8,6 +8,7 @@ namespace Forum.API.Services.Interfaces;
 public interface IForumService
 {
     public Task<ResultResponse> GetAllPost(QueryPostRequest request);
+    public Task<ResultResponse> GetPost(Guid commentid);
     public Task<ResultResponse> InsertPost(PostPostRequest request);
     public Task<ResultResponse> UpdatePost(PutPostRequest request);
     public Task<ResultResponse> DeletePost(Guid postid);

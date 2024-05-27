@@ -8,6 +8,7 @@ using Forum.API.Domain.Response;
 using Forum.API.Repositories.Interfaces;
 using Forum.API.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.Design;
 
 namespace Forum.API.Services.Implements;
 
@@ -42,6 +43,15 @@ public class ForumService : IForumService
         var result = await this._forumRepository.GetAsync(entity);
 
         ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "查詢成功", ReturnData = result };
+
+        return resultResponse;
+    }
+
+    public async Task<ResultResponse> GetPost(Guid commentid)
+    {
+        var post = await this._forumRepository.GetByPostIdAsync(commentid);
+
+        ResultResponse resultResponse = new ResultResponse() { ReturnMessage = "查詢成功", ReturnData = post };
 
         return resultResponse;
     }

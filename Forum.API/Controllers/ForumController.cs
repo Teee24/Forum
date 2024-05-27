@@ -18,7 +18,22 @@ public class ForumController : ControllerBase
     {
         this._forumService = forumService;
     }
+    // TODO : 單筆搜尋
+    /// <summary>
+    /// 單筆查詢Posts
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
+    [HttpGet("{commentId}")]
+    public async Task<IResult> GetById([FromRoute]  Guid commentId)
+    {
+        var result = await this._forumService.GetPost(commentId);
 
+        return Results.Ok(result);
+    }
+
+    // TODO : 搜尋
     /// <summary>
     /// 多筆查詢Posts
     /// </summary>
