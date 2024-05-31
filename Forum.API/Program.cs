@@ -16,7 +16,7 @@ try
         .Enrich.FromLogContext() //從當前的執行緒上下文中提取相關的上下文信息，並將這些信息自動添加到每條日誌訊息中
         .Enrich.WithEnvironmentName() //Environment
         .WriteTo.Console() //設置將Log輸出到終端機的畫面上
-        .WriteTo.File(formatter: new CompactJsonFormatter(), "./logs/log-.json", rollingInterval: RollingInterval.Day) // 將Log輸出為檔案,命名以當天日期為區分  
+        .WriteTo.File(formatter: new CompactJsonFormatter(), "./logs_1/log-.json", rollingInterval: RollingInterval.Day) // 將Log輸出為檔案,命名以當天日期為區分  
         .CreateLogger();
 
     // Add services to the container.
