@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTAuth_Practice", "JWTAuth
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpClient_Practice", "HttpClient_Practice\HttpClient_Practice.csproj", "{6D2B57C3-8C4C-45CD-8F03-D935814AE25A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileProvider_Practice", "FileProvider_Practice\FileProvider_Practice.csproj", "{1AE5E919-C83B-4CD5-9FF2-D567B875A7FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileProvider_Practice", "FileProvider_Practice\FileProvider_Practice.csproj", "{1AE5E919-C83B-4CD5-9FF2-D567B875A7FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangfirePractice", "HangfirePractice\HangfirePractice.csproj", "{A648BA4B-A76D-4B81-A991-83B68E02B476}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{1AE5E919-C83B-4CD5-9FF2-D567B875A7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AE5E919-C83B-4CD5-9FF2-D567B875A7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AE5E919-C83B-4CD5-9FF2-D567B875A7FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A648BA4B-A76D-4B81-A991-83B68E02B476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A648BA4B-A76D-4B81-A991-83B68E02B476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A648BA4B-A76D-4B81-A991-83B68E02B476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A648BA4B-A76D-4B81-A991-83B68E02B476}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
