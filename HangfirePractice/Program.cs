@@ -15,6 +15,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//啟用CORS
+builder.Services.AddCors(options =>
+{
+
+    options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+    //options.AddPolicy("AllowGet", builder => builder.AllowAnyOrigin().WithMethods("Get").WithHeaders("*"));
+});
+
 builder.Services.AddHangfire(config =>
 {
     config.UseDefaultCulture(new CultureInfo("zh-TW"))
@@ -33,6 +42,7 @@ builder.Services.AddHangfire(config =>
 });
 
 builder.Services.AddHangfireServer();
+
 
 builder.Services.AddScoped<IStockService, StockService>();
 

@@ -4,7 +4,9 @@ namespace HangfirePractice.Service;
 
 public interface IStockService
 {
-    public Task<bool> GetAndSaveETFInfo(string target);
+    public Task<bool> SaveETFInfo(List<ETFInfo> targets);
 
-    public Task<ETFInfo> GetETFInfo(string key);
+    public Task<ETFInfo> GetETFInfoCurrent(string key);
+
+    public Task<IEnumerable<ETFInfo>> GetETFInfoPast(string key, string date);
 }

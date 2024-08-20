@@ -18,10 +18,8 @@ public class StockService : IStockService
 
     // 建立 SQL 連接的方法
     private SqlConnection ForumConnection() => new SqlConnection(_configuration.GetConnectionString("Forum"));
-    public async Task<bool> GetAndSaveETFInfo(string target)
+    public async Task<bool> SaveETFInfo(List<ETFInfo> targets)
     {
-        var etfInfo = await GetETFInfo(target);
-
         string sql = @"
             INSERT INTO [Forum].[dbo].[ETFInfo]
             (
@@ -62,45 +60,41 @@ public class StockService : IStockService
                 @PriceFluctuationPercentage
             );";
 
+        // 建立連線
         using var conn = ForumConnection();
 
-        string date = DateTime.Now.ToString("yyyy/MM/dd");
-        string time = DateTime.Now.ToString("HH:mm:ss");
+        // 使用事務來確保所有插入操作的原子性
+        using var transaction = conn.BeginTransaction();
 
-        var parameters = new
+        try
         {
-            Date = date, // 現在時間
-            time = time,
-            etfInfo.TargetName,
-            etfInfo.TargetCode,
-            etfInfo.ClosingPrice,
-            etfInfo.OpeningPrice,
-            etfInfo.HighestPrice,
-            etfInfo.LowestPrice,
-            etfInfo.AveragePrice,
-            etfInfo.TotalTradingValueBillion,
-            etfInfo.PreviousClosingPrice,
-            etfInfo.PriceChangePercentage,
-            etfInfo.PriceChange,
-            etfInfo.TotalVolume,
-            etfInfo.PreviousVolume,
-            etfInfo.PriceFluctuationPercentage
-        };
+            // 使用 Dapper 的 ExecuteAsync 方法批次執行插入操作
+            var count = await conn.ExecuteAsync(sql, targets, transaction);
 
-        var count = await conn.ExecuteAsync(sql, parameters);
+            // 提交事務
+            transaction.Commit();
 
-        if (count <= 0)
+            if (count <= 0)
+            {
+                return false;
+            }
+
+            //Console.WriteLine("Ok");
+            return true;
+        }
+        catch (Exception ex)
         {
+            // 若有錯誤，回滾事務
+            transaction.Rollback();
+            Console.WriteLine($"Error: {ex.Message}");
             return false;
         }
-        return true;
 
 
     }
 
-    public async Task<ETFInfo> GetETFInfo(string key)
+    public async Task<ETFInfo> GetETFInfoCurrent(string key)
     {
-
         // 建立 Browser 的配置
         var config = Configuration.Default.WithDefaultLoader(
         new LoaderOptions
@@ -120,6 +114,11 @@ public class StockService : IStockService
 
         var etfInfo = new ETFInfo();
 
+        string date = DateTime.Now.ToString("yyyy/MM/dd");
+        string time = DateTime.Now.ToString("HH:mm:ss");
+
+        etfInfo.Date = date;
+        etfInfo.Time = time;
         etfInfo.TargetName = title?.TextContent;
         etfInfo.TargetCode = key;
 
@@ -170,5 +169,39 @@ public class StockService : IStockService
         }
 
         return etfInfo;
+    }
+
+    public async Task<IEnumerable<ETFInfo>> GetETFInfoPast(string key, string date)
+    {
+        string sql = @"SELECT [Date]
+                              ,[Time]
+                              ,[TargetName]
+                              ,[TargetCode]
+                              ,[ClosingPrice]
+                              ,[OpeningPrice]
+                              ,[HighestPrice]
+                              ,[LowestPrice]
+                              ,[AveragePrice]
+                              ,[TotalTradingValueBillion]
+                              ,[PreviousClosingPrice]
+                              ,[PriceChangePercentage]
+                              ,[PriceChange]
+                              ,[TotalVolume]
+                              ,[PreviousVolume]
+                              ,[PriceFluctuationPercentage]
+                          FROM [Forum].[dbo].[ETFInfo]
+                          WHERE 1 = 1";
+
+        if (string.IsNullOrEmpty(key))
+            sql += " AND [Date] = @Date";
+
+        if (string.IsNullOrEmpty(date))
+            sql += " AND [TargetCode] = @TargetCode";
+
+        using var conn = ForumConnection();
+
+        var result = await conn.QueryAsync<ETFInfo>(sql, new { Date = date, TargetCode = key });
+
+        return result;
     }
 }

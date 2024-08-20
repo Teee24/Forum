@@ -3,6 +3,14 @@
     public class ETFInfo
     {
         /// <summary>
+        /// 日期
+        /// </summary>
+        public string Date { get; set; }
+        /// <summary>
+        /// 時間
+        /// </summary>
+        public string Time { get; set; }
+        /// <summary>
         /// 標的物
         /// </summary>
         public string TargetName { get; set; }
